@@ -65,11 +65,11 @@ class SubscribePostTest(TestCase):
         self.assertEqual('Confirmação de inscrição', self.email.subject)
 
     def test_subscribe_email_from(self):
-        self.assertEqual('contato@eventex.com.br', self.email.from_email)
+        self.assertEqual('hanschucrteslabrat@gmail.com', self.email.from_email)
 
     def test_subscribe_email_to(self):
         self.assertEqual(
-                ['contato@eventex.com.br', 'xelo@xelo.com'],
+                ['hanschucrteslabrat@gmail.com', 'xelo@xelo.com'],
                 self.email.to
         )
 
@@ -78,3 +78,39 @@ class SubscribePostTest(TestCase):
         self.assertIn('12345678910', self.email.body)
         self.assertIn('xelo@xelo.com', self.email.body)
         self.assertIn('1122334455', self.email.body)
+
+
+class SubscribeInvalidPost(TestCase):
+    def setUp(self):
+        self.resp = self.client.post('/inscricao/', {})
+        self.form = self.resp.context['form']
+
+    def test_post(self):
+        """Invalid POST should not redirect"""
+        self.assertEqual(200, self.resp.status_code)
+
+    def test_template(self):
+        self.assertTemplateUsed(
+                self.resp,
+                'subscriptions/subscription_form.html'
+        )
+
+    def test_has_form(self):
+        self.assertIsInstance(self.form, SubscriptionForm)
+
+    def test_form_has_errors(self):
+        self.assertTrue(self.form.errors)
+
+
+class SubscribeSuccessMessage(TestCase):
+    def setUp(self):
+        data = dict(
+                name='Xelo Ximira',
+                cpf='12345678910',
+                email='xelo@xelo.com',
+                phone='1122334455'
+        )
+        self.resp = self.client.post('/inscricao/', data, follow=True)
+
+    def test_message(self):
+        self.assertContains(self.resp, 'Inscrição realizada com sucesso')
