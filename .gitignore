@@ -1,7 +1,9 @@
 .venv
 __pycache__
 staticfiles
+.ipynb_checkpoints
 *.pyc
 *.sqlite3
 .env
 variable.txt
+
