@@ -1,12 +1,13 @@
 from django.core import mail
 from django.test import TestCase
+from django.shortcuts import resolve_url as r
 from eventex.subscriptions.forms import SubscriptionForm
 from eventex.subscriptions.models import Subscription
 
 
-class SubscribeGet(TestCase):
+class SubscriptionsNewGet(TestCase):
     def setUp(self):
-        self.resp = self.client.get('/inscricao/')
+        self.resp = self.client.get(r('subscriptions:new'))
         self.form = self.resp.context['form']
 
     def test_get(self):
@@ -15,10 +16,8 @@ class SubscribeGet(TestCase):
 
     def test_template(self):
         """Must use subscriptions/subscription_form.html"""
-        self.assertTemplateUsed(
-                self.resp,
-                'subscriptions/subscription_form.html'
-        )
+        template_path = 'subscriptions/subscription_form.html'
+        self.assertTemplateUsed(self.resp, template_path)
 
     def test_html(self):
         """Html must contain input tags"""
@@ -43,7 +42,7 @@ class SubscribeGet(TestCase):
         self.assertIsInstance(self.form, SubscriptionForm)
 
 
-class SubscribePostValid(TestCase):
+class SubscriptionsNewPostValid(TestCase):
     def setUp(self):
         data = dict(
                 name='Xelo Ximira',
@@ -51,12 +50,12 @@ class SubscribePostValid(TestCase):
                 email='xelo@xelo.com',
                 phone='1122334455'
         )
-        self.resp = self.client.post('/inscricao/', data)
+        self.resp = self.client.post(r('subscriptions:new'), data)
         self.email = mail.outbox[0]
 
     def test_post(self):
         """Valid POST should redirect to /inscricao/1/"""
-        self.assertRedirects(self.resp, '/inscricao/1/')
+        self.assertRedirects(self.resp, r('subscriptions:detail', 1))
 
     def test_send_subscribe_email(self):
         self.assertEqual(1, len(mail.outbox))
@@ -65,9 +64,9 @@ class SubscribePostValid(TestCase):
         self.assertTrue(Subscription.objects.exists())
 
 
-class SubscribePostInvalid(TestCase):
+class SubscriptionsNewInvalid(TestCase):
     def setUp(self):
-        self.resp = self.client.post('/inscricao/', {})
+        self.resp = self.client.post(r('subscriptions:new'), {})
         self.form = self.resp.context['form']
 
     def test_post(self):
@@ -75,10 +74,8 @@ class SubscribePostInvalid(TestCase):
         self.assertEqual(200, self.resp.status_code)
 
     def test_template(self):
-        self.assertTemplateUsed(
-                self.resp,
-                'subscriptions/subscription_form.html'
-        )
+        template_path = 'subscriptions/subscription_form.html'
+        self.assertTemplateUsed(self.resp, template_path)
 
     def test_has_form(self):
         self.assertIsInstance(self.form, SubscriptionForm)
