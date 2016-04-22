@@ -6,10 +6,10 @@ from django.shortcuts import resolve_url as r
 class SubscribePostValid(TestCase):
     def setUp(self):
         data = dict(
-                name='Xelo Ximira',
-                cpf='12345678910',
-                email='xelo@xelo.com',
-                phone='1122334455'
+            name='Xelo Ximira',
+            cpf='12345678910',
+            email='xelo@xelo.com',
+            phone='1122334455'
         )
         self.client.post(r('subscriptions:new'), data)
         self.email = mail.outbox[0]
