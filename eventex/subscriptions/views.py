@@ -28,7 +28,7 @@ def create(request):
     if not form.is_valid():
         return render(request, subscriptionhtml, {'form': form})
 
-    subscription = Subscription.objects.create(**form.cleaned_data)
+    subscription = form.save()
 
     # Send email
     _send_mail(form.cleaned_data['email'], {'subscription': subscription})
