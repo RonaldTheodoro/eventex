@@ -16,7 +16,9 @@ class SubscriptionFormOld(forms.Form):
         return ' '.join(words)
 
     def clean(self):
-        if not self.cleaned_data.get('email') and not self.cleaned_data.get('phone'):
+        get_email = self.cleaned_data.get('email')
+        get_phone = self.cleaned_data.get('phone')
+        if not get_email and not get_phone:
             raise ValidationError('Informe o seu email ou telefone')
 
         return self.cleaned_data
@@ -34,7 +36,9 @@ class SubscriptionForm(forms.ModelForm):
 
     def clean(self):
         self.cleaned_data = super().clean()
-        if not self.cleaned_data.get('email') and not self.cleaned_data.get('phone'):
+        get_email = self.cleaned_data.get('email')
+        get_phone = self.cleaned_data.get('phone')
+        if not get_email and not get_phone:
             raise ValidationError('Informe o seu email ou telefone')
 
         return self.cleaned_data

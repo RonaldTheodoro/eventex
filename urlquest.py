@@ -6,12 +6,28 @@ from django.core.urlresolvers import set_urlconf, resolve, reverse
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'eventex.settings')
 
 
-def index(request): pass
-def auth(request): pass
-def list_(request): pass
-def edit(request): pass
-def new(request): pass
-def delete(request): pass
+def index(request):
+    pass
+
+
+def auth(request):
+    pass
+
+
+def list_(request):
+    pass
+
+
+def edit(request):
+    pass
+
+
+def new(request):
+    pass
+
+
+def delete(request):
+    pass
 
 
 class LENDConf:

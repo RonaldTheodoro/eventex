@@ -16,16 +16,28 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='subscription',
             name='cpf',
-            field=models.CharField(max_length=11, validators=[eventex.subscriptions.validators.validate_cpf], verbose_name='CPF'),
+            field=models.CharField(
+                max_length=11,
+                validators=[eventex.subscriptions.validators.validate_cpf],
+                verbose_name='CPF'
+            ),
         ),
         migrations.AlterField(
             model_name='subscription',
             name='email',
-            field=models.EmailField(blank=True, max_length=254, verbose_name='e-mail'),
+            field=models.EmailField(
+                blank=True,
+                max_length=254,
+                verbose_name='e-mail'
+            ),
         ),
         migrations.AlterField(
             model_name='subscription',
             name='phone',
-            field=models.CharField(blank=True, max_length=20, verbose_name='telefone'),
+            field=models.CharField(
+                blank=True,
+                max_length=20,
+                verbose_name='telefone'
+            ),
         ),
     ]
