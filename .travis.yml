@@ -2,21 +2,14 @@ language: python
 
 python:
   - "3.5.1"
-  
+
 install:
   - cp contrib/env-sample .env
   - pip install -q -r requirements.txt
   - pip install flake8
-  - pip install coveralls
-  
+
 before_script:
   - flake8 eventex
-  
+
 script:
   - python manage.py test
-  
-script:
-  - coverage run --source=eventex manager.py test
-
-after_success:
-  - coveralls
