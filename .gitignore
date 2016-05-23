@@ -2,8 +2,8 @@
 __pycache__
 staticfiles
 .ipynb_checkpoints
+.coverage
 *.pyc
 *.sqlite3
 .env
 variable.txt
-
