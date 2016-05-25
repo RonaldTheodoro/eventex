@@ -1,0 +1,30 @@
+[run]
+source = eventex
+omit =
+    eventex/__init__.py
+    eventex/core/__init__.py
+    eventex/core/migrations/0001_initial.py
+    eventex/core/migrations/0002_auto_20160522_2241.py
+    eventex/core/migrations/0003_contact.py
+    eventex/core/migrations/0004_auto_20160523_0019.py
+    eventex/core/migrations/__init__.py
+    eventex/core/tests/__init__.py
+    eventex/core/tests/test_model_contact.py
+    eventex/core/tests/test_model_speaker.py
+    eventex/core/tests/test_view_home.py
+    eventex/core/tests/test_view_speaker_detail.py
+    eventex/settings.py
+    eventex/subscriptions/__init__.py
+    eventex/subscriptions/migrations/0001_initial.py
+    eventex/subscriptions/migrations/0002_auto_20160422_0338.py
+    eventex/subscriptions/migrations/0003_auto_20160422_0350.py
+    eventex/subscriptions/migrations/0004_auto_20160514_0354.py
+    eventex/subscriptions/migrations/__init__.py
+    eventex/subscriptions/tests/__init__.py
+    eventex/subscriptions/tests/test_admin.py
+    eventex/subscriptions/tests/test_form_subscribe.py
+    eventex/subscriptions/tests/test_mail_subscribe.py
+    eventex/subscriptions/tests/test_model_subscribe.py
+    eventex/subscriptions/tests/test_view_detail.py
+    eventex/subscriptions/tests/test_view_new.py
+    eventex/wsgi.py

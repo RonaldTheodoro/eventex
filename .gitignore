@@ -1,9 +1,11 @@
 .venv
 __pycache__
 staticfiles
+htmlcov
 .ipynb_checkpoints
 .coverage
 *.pyc
 *.sqlite3
 .env
+coverage.xml
 variable.txt
