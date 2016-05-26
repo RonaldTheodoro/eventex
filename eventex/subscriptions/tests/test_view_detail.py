@@ -4,12 +4,13 @@ from eventex.subscriptions.models import Subscription
 
 
 class SubscriptionDetailGet(TestCase):
+
     def setUp(self):
         self.obj = Subscription.objects.create(
-                name='Xelo Ximira',
-                cpf='12345678910',
-                email='xelo@xelo.com',
-                phone='1122334455'
+            name='Xelo Ximira',
+            cpf='12345678910',
+            email='xelo@xelo.com',
+            phone='1122334455'
         )
         self.resp = self.client.get(r('subscriptions:detail', self.obj.pk))
 
@@ -26,10 +27,10 @@ class SubscriptionDetailGet(TestCase):
 
     def test_html(self):
         contents = (
-                self.obj.name,
-                self.obj.cpf,
-                self.obj.email,
-                self.obj.phone
+            self.obj.name,
+            self.obj.cpf,
+            self.obj.email,
+            self.obj.phone
         )
         with self.subTest():
             for content in contents:

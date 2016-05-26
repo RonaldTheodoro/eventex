@@ -3,7 +3,7 @@ from django.test import TestCase
 from eventex.core.models import Speaker, Contact
 
 
-class ContactModeTest(TestCase):
+class ContactModelTest(TestCase):
 
     def setUp(self):
         self.speaker = Speaker.objects.create(
@@ -42,3 +42,25 @@ class ContactModeTest(TestCase):
             value='ronald@ronald.com'
         )
         self.assertEqual('ronald@ronald.com', str(contact))
+
+
+class ContactManagerTest(TestCase):
+
+    def setUp(self):
+        s = Speaker.objects.create(
+            name='Xelo Ximira',
+            slug='xelo-ximira',
+            photo='https://i.ytimg.com/vi/tIzf_MAbxyg/maxresdefault.jpg',
+        )
+        s.contact_set.create(kind=Contact.EMAIL, value='xelo@ximira.com')
+        s.contact_set.create(kind=Contact.PHONE, value='11958585858')
+
+    def test_emails(self):
+        qs = Contact.objects.emails()
+        expected = ['xelo@ximira.com']
+        self.assertQuerysetEqual(qs, expected, lambda o: o.value)
+
+    def test_phone(self):
+        qs = Contact.objects.phones()
+        expected = ['11958585858']
+        self.assertQuerysetEqual(qs, expected, lambda o: o.value)

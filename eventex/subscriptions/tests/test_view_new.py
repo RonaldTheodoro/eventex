@@ -6,6 +6,7 @@ from eventex.subscriptions.models import Subscription
 
 
 class SubscriptionsNewGet(TestCase):
+
     def setUp(self):
         self.resp = self.client.get(r('subscriptions:new'))
         self.form = self.resp.context['form']
@@ -43,6 +44,7 @@ class SubscriptionsNewGet(TestCase):
 
 
 class SubscriptionsNewPostValid(TestCase):
+
     def setUp(self):
         data = dict(
             name='Xelo Ximira',
@@ -65,6 +67,7 @@ class SubscriptionsNewPostValid(TestCase):
 
 
 class SubscriptionsNewInvalid(TestCase):
+
     def setUp(self):
         self.resp = self.client.post(r('subscriptions:new'), {})
         self.form = self.resp.context['form']
@@ -88,6 +91,7 @@ class SubscriptionsNewInvalid(TestCase):
 
 
 class TemplateRegresionTest(TestCase):
+
     def test_template_has_no_field_errors(self):
         invalid_data = dict(name='Xelo Ximira', cpf='12345678910')
         response = self.client.post(r('subscriptions:new'), invalid_data)

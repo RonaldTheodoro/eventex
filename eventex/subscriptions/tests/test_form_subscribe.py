@@ -3,6 +3,7 @@ from eventex.subscriptions.forms import SubscriptionForm
 
 
 class SubscriptionFormTest(TestCase):
+
     def test_has_form_fields(self):
         """Form must have 4 fields"""
         fields = ['name', 'cpf', 'email', 'phone']

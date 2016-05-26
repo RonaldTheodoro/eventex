@@ -5,6 +5,7 @@ from eventex.subscriptions.validators import validate_cpf
 
 
 class SubscriptionFormOld(forms.Form):
+    """Not used"""
     name = forms.CharField(label='Nome')
     cpf = forms.CharField(label='CPF', validators=[validate_cpf])
     email = forms.EmailField(label='Email', required=False)
@@ -25,6 +26,7 @@ class SubscriptionFormOld(forms.Form):
 
 
 class SubscriptionForm(forms.ModelForm):
+
     class Meta:
         model = Subscription
         fields = ['name', 'cpf', 'email', 'phone']

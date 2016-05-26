@@ -4,6 +4,7 @@ from django.shortcuts import resolve_url as r
 
 
 class SubscribePostValid(TestCase):
+
     def setUp(self):
         data = dict(
             name='Xelo Ximira',

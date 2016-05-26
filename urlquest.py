@@ -31,6 +31,7 @@ def delete(request):
 
 
 class LENDConf:
+
     def __init__(self, model):
         self.model = model
         self.urlpatterns = [
