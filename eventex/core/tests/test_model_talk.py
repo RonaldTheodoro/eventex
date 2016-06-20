@@ -41,6 +41,9 @@ class TalkModelTest(TestCase):
     def test_str(self):
         self.assertEqual('Titulo da palestra', str(self.talk))
 
+    def test_ordering(self):
+        self.assertListEqual(['start'], Talk._meta.ordering)
+
 
 class PeriodManagerTest(TestCase):
 
@@ -76,7 +79,7 @@ class CourseModelTest(TestCase):
         self.assertTrue(Course.objects.exists())
 
     def test_speaker(self):
-        """Course has many speakers and vice-versa"""
+        """CourseOld has many speakers and vice-versa"""
         self.course.speakers.create(
             name='Ronald Theodoro',
             slug='ronald-theodoro',
@@ -89,3 +92,6 @@ class CourseModelTest(TestCase):
 
     def test_manager(self):
         self.assertIsInstance(Course.objects, PeriodManager)
+
+    def test_ordering(self):
+        self.assertListEqual(['start'], Course._meta.ordering)
