@@ -12,3 +12,4 @@ if config('DEBUG', default=False, cast=bool):
 else:
     # Use git cdn when DEBUG is false
     application = get_wsgi_application()
+    
